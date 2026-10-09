@@ -1,0 +1,92 @@
+{
+  "slug": "biomed-lab-capacity-ai",
+  "title": "Laboratory capacity & turnaround",
+  "domain": "Biomedical operations",
+  "problem": "Laboratory operations managers must anticipate turnaround delays as queues grow and instruments become unavailable, while preserving a reviewable record of staffing and routing recommendations.",
+  "solution": "Laboratory turnaround prediction using random-forest regression, queue-capacity checks, SOP-grounded explanations, a FastAPI dashboard, MCP and Docker.",
+  "description": "Laboratory turnaround prediction using random-forest regression, queue-capacity checks, SOP-grounded explanations, a FastAPI dashboard, MCP and Docker.",
+  "task": "regression",
+  "target": "turnaround_hours",
+  "target_units": "hours",
+  "fields": [
+    {
+      "name": "queue_samples",
+      "label": "Samples in queue",
+      "min": 0,
+      "max": 1000,
+      "integer": true
+    },
+    {
+      "name": "instruments",
+      "label": "Available instruments",
+      "min": 1,
+      "max": 12,
+      "integer": true
+    },
+    {
+      "name": "minutes_per_sample",
+      "label": "Processing time (min)",
+      "min": 1,
+      "max": 120,
+      "integer": false
+    },
+    {
+      "name": "urgent_samples",
+      "label": "Urgent samples",
+      "min": 0,
+      "max": 1000,
+      "integer": true
+    }
+  ],
+  "model_features": [
+    "queue_samples",
+    "instruments",
+    "minutes_per_sample",
+    "urgent_samples"
+  ],
+  "retrieval_query": "laboratory turnaround backlog capacity escalation",
+  "scenarios": [
+    {
+      "name": "Balanced workload",
+      "features": {
+        "queue_samples": 20,
+        "instruments": 4,
+        "minutes_per_sample": 10,
+        "urgent_samples": 2
+      },
+      "expected_action": "monitor"
+    },
+    {
+      "name": "Capacity review",
+      "features": {
+        "queue_samples": 70,
+        "instruments": 2,
+        "minutes_per_sample": 15,
+        "urgent_samples": 10
+      },
+      "expected_action": "review"
+    },
+    {
+      "name": "Major backlog",
+      "features": {
+        "queue_samples": 300,
+        "instruments": 1,
+        "minutes_per_sample": 20,
+        "urgent_samples": 50
+      },
+      "expected_action": "escalate"
+    }
+  ],
+  "data_formula": "Queue-clearance time plus an urgent-workload adjustment and Gaussian noise generates synthetic turnaround labels. A random split tests interpolation, not temporal or site generalization.",
+  "accent": "#136b63",
+  "topics": [
+    "ai-engineering",
+    "data-science",
+    "rag",
+    "llm",
+    "mcp",
+    "fastapi",
+    "docker",
+    "biomedical"
+  ]
+}

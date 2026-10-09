@@ -1,0 +1,81 @@
+{
+  "project": "Laboratory capacity & turnaround",
+  "facts": {
+    "minimum_action": "escalate",
+    "summary": "Estimated turnaround 83.3 h; theoretical queue clearance 100.0 h.",
+    "signals": {
+      "predicted_turnaround_h": 83.34,
+      "queue_clearance_h": 100.0,
+      "heldout_residual_p90_h": 10.13
+    },
+    "next_steps": [
+      "Confirm instrument availability and staffing coverage.",
+      "Ask the laboratory supervisor to review capacity before changing sample routing."
+    ]
+  },
+  "advice": {
+    "action": "escalate",
+    "rationale": "Estimated turnaround 83.3 h; theoretical queue clearance 100.0 h.",
+    "citations": [
+      "capacity:3",
+      "maintenance:3"
+    ],
+    "next_steps": [
+      "Confirm instrument availability and staffing coverage.",
+      "Ask the laboratory supervisor to review capacity before changing sample routing."
+    ]
+  },
+  "guardrail_override": false,
+  "evidence": [
+    {
+      "id": "capacity:3",
+      "source": "capacity.md",
+      "text": "This fictional laboratory reviews workload when theoretical queue-clearance time exceeds 8 hours and escalates when it exceeds 24 hours. Queue-clearance hours equal queued samples multiplied by processing minutes divided by available instruments and by 60. No instrument should be assumed to run faster than its configured capacity.",
+      "sha256": "0329e8f0c5b03814c1a7e8879aa805c25e609f787a3f1c6c2f416ddade170cff",
+      "score": 0.26213
+    },
+    {
+      "id": "maintenance:3",
+      "source": "maintenance.md",
+      "text": "A count of zero available instruments must be handled as an outage in the source incident system and is rejected by this capacity model. Confirm maintenance windows and instrument availability before acting on a turnaround forecast.",
+      "sha256": "89003b158a4609714c6b54369d5e4b2fa94ff8e88b6f4a92035b26d1734d8c6a",
+      "score": 0.11917
+    },
+    {
+      "id": "dataquality:3",
+      "source": "dataquality.md",
+      "text": "Reject missing, extra, nonfinite and out-of-range input fields. Keep test data synthetic. The demonstration model has not been validated for live operations. Changing data, model code or policy content invalidates the local response cache and requires a new evaluation.",
+      "sha256": "b13ff0681070292b3b173d8b237aa9938280e05e252539f3ddb642e4ff8c47b8",
+      "score": 0.06647
+    }
+  ],
+  "usage": {
+    "provider": "demo",
+    "model": "deterministic-evidence-template",
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "prompt_budget_units": 2927
+  },
+  "optimization": {
+    "naive_prompt_units": 4109,
+    "packed_prompt_units": 2927,
+    "reduction_pct": 28.8,
+    "measurement": "UTF-8 text byte upper bound plus framing; not billed tokens"
+  },
+  "corpus_version": "eb2afc31f37dda238f086a69168fef21d0c4f56451f02e727006b97aabfbee56",
+  "code_version": "4aac9ee24500b79ba25c5e06ffd5569fcfba304a255d3600162072fa03d6c0d2",
+  "features": {
+    "queue_samples": 300.0,
+    "instruments": 1.0,
+    "minutes_per_sample": 20.0,
+    "urgent_samples": 50.0
+  },
+  "human_review_required": true,
+  "run_id": "e3b3c790-bc7a-478e-b241-f5531663b2e6",
+  "cache_hit": true,
+  "current_request_tokens": {
+    "input": 0,
+    "output": 0
+  },
+  "latency_ms": 2.72
+}

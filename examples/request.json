@@ -1,0 +1,8 @@
+{
+  "features": {
+    "queue_samples": 300,
+    "instruments": 1,
+    "minutes_per_sample": 20,
+    "urgent_samples": 50
+  }
+}

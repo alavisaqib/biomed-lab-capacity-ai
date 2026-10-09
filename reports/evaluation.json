@@ -1,0 +1,57 @@
+{
+  "model": {
+    "task": "regression",
+    "target": "turnaround_hours",
+    "units": "hours",
+    "train_rows": 600,
+    "test_rows": 200,
+    "seed": 42,
+    "data": "synthetic; not evidence of real-world performance",
+    "mae": 4.0237,
+    "mean_baseline_mae": 19.9663,
+    "residual_p90": 10.1301
+  },
+  "decision_scenarios": [
+    {
+      "scenario": "Balanced workload",
+      "expected": "monitor",
+      "actual": "monitor",
+      "pass": true,
+      "prompt_reduction_pct": 28.8
+    },
+    {
+      "scenario": "Capacity review",
+      "expected": "review",
+      "actual": "review",
+      "pass": true,
+      "prompt_reduction_pct": 28.8
+    },
+    {
+      "scenario": "Major backlog",
+      "expected": "escalate",
+      "actual": "escalate",
+      "pass": true,
+      "prompt_reduction_pct": 28.8
+    }
+  ],
+  "retrieval": [
+    {
+      "query": "Capacity and turnaround This fictional laboratory reviews workload when theoretical queue-clearance time exceeds 8 hours and escalates when it exceeds 24 hours",
+      "expected_source": "capacity.md",
+      "hit_at_4": true
+    },
+    {
+      "query": "Laboratory routing Urgent samples must be a subset of queued samples",
+      "expected_source": "routing.md",
+      "hit_at_4": true
+    },
+    {
+      "query": "Instrument maintenance A count of zero available instruments must be handled as an outage in the source incident system and is rejected by this capacity model",
+      "expected_source": "maintenance.md",
+      "hit_at_4": true
+    }
+  ],
+  "retrieval_hit_rate": 1.0,
+  "live_llm_tested": false,
+  "notes": "Synthetic demonstration metrics. No real-world accuracy, cost savings or production validation claimed."
+}

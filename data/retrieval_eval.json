@@ -1,0 +1,14 @@
+[
+  {
+    "query": "Capacity and turnaround This fictional laboratory reviews workload when theoretical queue-clearance time exceeds 8 hours and escalates when it exceeds 24 hours",
+    "source": "capacity.md"
+  },
+  {
+    "query": "Laboratory routing Urgent samples must be a subset of queued samples",
+    "source": "routing.md"
+  },
+  {
+    "query": "Instrument maintenance A count of zero available instruments must be handled as an outage in the source incident system and is rejected by this capacity model",
+    "source": "maintenance.md"
+  }
+]
